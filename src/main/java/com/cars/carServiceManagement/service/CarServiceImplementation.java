@@ -7,7 +7,6 @@ import com.cars.carServiceManagement.entity.FuelType;
 import com.cars.carServiceManagement.exception.ResourceNotFoundException;
 import com.cars.carServiceManagement.mapper.CarMapper;
 import com.cars.carServiceManagement.repository.CarRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,14 +45,15 @@ public class CarServiceImplementation implements CarService {
     @Override
     public CarResponse updateCar(Long id, CarRequest request) {
         Car existingCar = findCarById(id);
-        BeanUtils.copyProperties(request, existingCar, "id");
-//        existingCar.setBrand(request.getBrand());
-//        existingCar.setModel(request.getModel());
-//        existingCar.setManufactureYear(request.getYear());
-//        existingCar.setLicensePlate(request.getLicensePlate());
-//        existingCar.setNumberOfDoors(request.getNumberOfDoors());
-//        existingCar.setFuelType(request.getFuelType());
-//        existingCar.setTransmission(request.getTransmission());
+
+        existingCar.setBrand(request.getBrand());
+        existingCar.setModel(request.getModel());
+        existingCar.setManufactureYear(request.getYear());
+        existingCar.setLicensePlate(request.getLicensePlate());
+        existingCar.setNumberOfDoors(request.getNumberOfDoors());
+        existingCar.setFuelType(request.getFuelType());
+        existingCar.setTransmission(request.getTransmission());
+
         Car updatedCar = carRepository.save(existingCar);
 
         return CarMapper.toResponse(updatedCar);
