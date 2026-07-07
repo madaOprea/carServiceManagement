@@ -1,13 +1,14 @@
 package com.cars.carServiceManagement.service;
 
 import com.cars.carServiceManagement.dto.*;
+import com.cars.carServiceManagement.entity.FuelType;
 
 import java.util.*;
 
 public interface CarService {
     List<CarResponse> getAllCars();
 
-    List<CarResponse> getAllCarsSortedByYear();
+    List<CarResponse> getAllCarsSorted(String field);
 
     CarResponse getCarById(Long id);
 

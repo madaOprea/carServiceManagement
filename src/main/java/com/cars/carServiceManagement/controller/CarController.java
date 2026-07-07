@@ -1,7 +1,6 @@
 package com.cars.carServiceManagement.controller;
 
-import com.cars.carServiceManagement.dto.CarRequest;
-import com.cars.carServiceManagement.dto.CarResponse;
+import com.cars.carServiceManagement.dto.*;
 import com.cars.carServiceManagement.service.CarService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +22,9 @@ public class CarController {
         return carService.getAllCars();
     }
 
-    @GetMapping
-    public List<CarResponse> getAllCarsSortedByBrand(@RequestParam(required = false) String sort)) {
-        return carService.getAllCarsSortedByBrand();
+    @GetMapping("/sorted")
+    public List<CarResponse> getAllCarsSorted(@RequestParam String field) {
+        return carService.getAllCarsSorted(field);
     }
 
     @GetMapping("/{id}")

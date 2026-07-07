@@ -1,7 +1,6 @@
 package com.cars.carServiceManagement.service;
 
-import com.cars.carServiceManagement.dto.CarRequest;
-import com.cars.carServiceManagement.dto.CarResponse;
+import com.cars.carServiceManagement.dto.*;
 import com.cars.carServiceManagement.entity.Car;
 import com.cars.carServiceManagement.entity.FuelType;
 import com.cars.carServiceManagement.exception.ResourceNotFoundException;
@@ -21,10 +20,16 @@ public class CarServiceImplementation implements CarService {
     public CarServiceImplementation(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
-
-    @Override
     public List<CarResponse> getAllCars() {
         return carRepository.findAll()
+                .stream()
+                .map(CarMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public List<CarResponse> getAllCarsSorted(String field) {
+        return carRepository.findAll(Sort.by(field))
                 .stream()
                 .map(CarMapper::toResponse)
                 .toList();
@@ -88,8 +93,6 @@ public class CarServiceImplementation implements CarService {
     }
 
     private Car findCarById(Long id) {
-        return carRepository.findById(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Car", "id", id));
+        return carRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Car", "id", id));
     }
 }
