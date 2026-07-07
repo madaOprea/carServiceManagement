@@ -23,6 +23,11 @@ public class CarController {
         return carService.getAllCars();
     }
 
+    @GetMapping
+    public List<CarResponse> getAllCarsSortedByBrand(@RequestParam(required = false) String sort)) {
+        return carService.getAllCarsSortedByBrand();
+    }
+
     @GetMapping("/{id}")
     public CarResponse getCarById(@PathVariable Long id) {
         return carService.getCarById(id);

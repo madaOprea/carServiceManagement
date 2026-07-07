@@ -7,6 +7,8 @@ import java.util.*;
 public interface CarService {
     List<CarResponse> getAllCars();
 
+    List<CarResponse> getAllCarsSortedByYear();
+
     CarResponse getCarById(Long id);
 
     CarResponse createCar(CarRequest request);

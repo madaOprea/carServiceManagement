@@ -7,6 +7,7 @@ import com.cars.carServiceManagement.entity.FuelType;
 import com.cars.carServiceManagement.exception.ResourceNotFoundException;
 import com.cars.carServiceManagement.mapper.CarMapper;
 import com.cars.carServiceManagement.repository.CarRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
