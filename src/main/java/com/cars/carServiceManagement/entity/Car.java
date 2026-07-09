@@ -5,8 +5,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "cars")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Car extends Vehicle {
@@ -18,4 +17,7 @@ public class Car extends Vehicle {
 
     private String transmission;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

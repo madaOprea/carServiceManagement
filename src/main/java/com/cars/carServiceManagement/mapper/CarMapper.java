@@ -2,13 +2,12 @@ package com.cars.carServiceManagement.mapper;
 
 import com.cars.carServiceManagement.dto.*;
 import com.cars.carServiceManagement.entity.Car;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
+@NoArgsConstructor
 @Component
 public class CarMapper {
-
-    private CarMapper() {
-    }
 
     public static Car toEntity(CarRequest request) {
 
